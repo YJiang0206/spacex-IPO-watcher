@@ -38,19 +38,15 @@ def send_email(subject, body):
 #     }
 @app.get("/check-ipo")
 def check_ipo():
-
     global already_alerted
 
     result = check_spacex_ipo()
 
-    #if result["available"] and not already_alerted:
-
-
-    send_email(
-        "SpaceX IPO Alert",
-        "TEST FROM RENDER"
-    )
-
-        #already_alerted = True
+    if result["available"] and not already_alerted:
+        send_email(
+            "SpaceX IPO Alert",
+            "Possible SpaceX IPO signal detected. Open Schwab now."
+        )
+        already_alerted = True
 
     return result
