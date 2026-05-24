@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IPO Watcher</title>
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>SpaceX IPO Watcher</h1>
+
+      <div class="section">
+        <label>Ticker</label>
+        <input id="ticker" value="SPCX" />
+      </div>
+
+      <div class="section">
+        <label>Shares</label>
+        <input id="shares" type="number" value="100" />
+      </div>
+
+      <button onclick="checkIPO()">Check IPO</button>
+
+      <p id="status">Status: waiting...</p>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
