@@ -48,13 +48,14 @@ def check_ipo():
 
     result = check_spacex_ipo()
 
-    if result["available"] and not already_alerted:
+    #if result["available"] and not already_alerted:
 
-        send_email(
-            "SpaceX IPO Alert",
-            "Possible SpaceX IPO signal detected."
-        )
 
-        already_alerted = True
+    send_email(
+        "SpaceX IPO Alert",
+        "Possible SpaceX IPO signal detected."
+    )
+
+        #already_alerted = True
 
     return result
