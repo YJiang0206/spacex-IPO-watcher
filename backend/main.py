@@ -11,9 +11,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.get("/")
-# def root():
-#     return {"message": "SpaceX IPO watcher backend running"}
+@app.get("/")
+def root():
+    return {"message": "SpaceX IPO watcher backend running"}
 
 # @app.get("/check-ipo")
 # def check_ipo():
