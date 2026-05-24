@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from ipo_checker import check_spacex_ipo
+import resend
 import os
-import smtplib
-from email.mime.text import MIMEText
 
 app = FastAPI()
 # prevent corsm blocking by chrome
@@ -15,20 +14,16 @@ app.add_middleware(
 )
 already_alerted = False
 
+resend.api_key = os.environ["RESEND_API_KEY"]
 def send_email(subject, body):
 
-    sender = os.environ["EMAIL_SENDER"]
-    password = os.environ["EMAIL_PASSWORD"]
-    receiver = os.environ["EMAIL_RECEIVER"]
+    resend.Emails.send({
+        "from": "onboarding@resend.dev",
+        "to": "yuanjiejiang92@gmail.com",
+        "subject": subject,
+        "html": body
+    })
 
-    msg = MIMEText(body)
-    msg["Subject"] = subject
-    msg["From"] = sender
-    msg["To"] = receiver
-
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(sender, password)
-        server.sendmail(sender, receiver, msg.as_string())
 # @app.get("/")
 # def root():
 #     return {"message": "SpaceX IPO watcher backend running"}
@@ -53,7 +48,7 @@ def check_ipo():
 
     send_email(
         "SpaceX IPO Alert",
-        "Possible SpaceX IPO signal detected."
+        "TEST FROM RENDER"
     )
 
         #already_alerted = True
